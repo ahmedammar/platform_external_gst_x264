@@ -30,6 +30,7 @@
 #define _ISOC99_SOURCE
 #undef NDEBUG // always check asserts, the speed effect is far too small to disable them
 #include <math.h>
+#include <inttypes.h>
 
 #include "common/common.h"
 #include "ratecontrol.h"
