@@ -6,8 +6,14 @@ LOCAL_MODULE_TAGS := eng debug
 
 X264_TOP := $(LOCAL_PATH)
 
+ifeq ($(NDK_BUILD),true)
+LIB := $(SYSROOT)/usr/lib
+else
+LIB := $(TARGET_OUT_SHARED_LIBRARIES)
+endif
+
 .PHONY: libx264-configure
-libx264-configure:
+libx264-configure: $(TARGET_CRTBEGIN_DYNAMIC_O) $(TARGET_CRTEND_O) $(LIB)/libc.so $(LIB)/libz.so
 	cd $(X264_TOP) ; \
 	CC="$(CONFIGURE_CC)" \
 	CFLAGS="$(CONFIGURE_CFLAGS)" \
